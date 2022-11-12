@@ -1,6 +1,7 @@
 import { Header } from "./components/Header";
 import { Post } from "./Post";
 import Chance from "./Utils/Chance";
+import './global.css';
 
 export function App() {
   
