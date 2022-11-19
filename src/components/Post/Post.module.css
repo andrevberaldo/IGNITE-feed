@@ -1,0 +1,75 @@
+.post {
+    background: var(--gray-800);
+    border-radius: 8px;
+    padding: 2.5rem;
+}
+
+.post + .post {
+    margin-top: 2rem;
+}
+
+.content {
+    line-height: 1.6;
+    color: var(--gray-300);
+    margin-top: 1.5rem;
+}
+
+.content p {
+    margin-top: 1rem;
+}
+
+.content a {
+    font-weight: bold;
+    color: var(--green-500);
+    text-decoration: none;
+}
+
+.content a:hover {    
+    color: var(--green-300);    
+}
+
+
+.post .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post .header .author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    /* border: 1px solid white; */
+}
+
+.post .header img {
+    box-sizing: initial;;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--gray-800);
+    overflow: hidden;
+    outline: 2px solid var(--green-500);    
+}
+
+.post .header .author .author-info {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    font-size: 0.875rem;    
+}
+
+.post .header .author .author-info span{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;    
+    width: 90%;    
+}
+
+
+
+.header time {
+    font-size: 0.875rem;
+}

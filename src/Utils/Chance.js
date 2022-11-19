@@ -18,6 +18,12 @@ const Chance = {
     },
     job(){
         return faker.name.jobTitle();
+    },
+    int() {
+        return faker.datatype.number();
+    },
+    word() {
+        return faker.lorem.word();
     }
 }
 

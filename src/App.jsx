@@ -1,5 +1,5 @@
 import { Header } from "./components/Header/Header";
-import { Post } from "./Post";
+import { Post } from "./components/Post/Post";
 import Chance from "./Utils/Chance";
 
 import styles from './App.module.css';
@@ -16,18 +16,8 @@ export function App() {
         <SideBar />
 
         <main>
-            <Post 
-              author={Chance.fullName()}
-              content={Chance.content(2)}
-            />
-            <Post 
-              author={Chance.fullName()}
-              content={Chance.content(3)}
-            />
-            <Post 
-              author={Chance.name()}
-            content={Chance.content()}
-            />
+          <Post />
+          <Post />
         </main>    
       </div>
     </>
