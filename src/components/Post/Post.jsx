@@ -1,6 +1,7 @@
 import styles from './Post.module.css';
 import Chance from '../../Utils/Chance';
 import moment from 'moment';
+import { Comment } from '../Comment/Comment';
 
 export function Post() {
     const postDate = moment().subtract(Chance.int(), 'minutes');
@@ -8,6 +9,7 @@ export function Post() {
 
     return (
         <article className={styles.post}>
+
             <header className={styles.header}>
                 
                 <div className={styles.author}>
@@ -24,6 +26,7 @@ export function Post() {
                 >
                     Posted {postDate.fromNow()}
                 </time>
+
             </header>
 
             <div className={styles.content}>
@@ -36,7 +39,9 @@ export function Post() {
             </div>
 
             <form className={styles.feedback}>
+                
                 <strong>Give Your Feedback</strong>
+                
                 <textarea 
                     placeholder='Give Your Feedback'
                 />
@@ -44,9 +49,17 @@ export function Post() {
                 <footer>
                     <button type='submit'>
                         Comment
-                    </button>
-                </footer>                
+                    </button>                
+                </footer>
+
             </form>
+
+            <div className={styles.commentList}>
+                <Comment />
+            </div>
+
+            
+
         </article>
     )
 }
