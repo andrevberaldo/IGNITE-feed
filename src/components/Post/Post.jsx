@@ -28,10 +28,25 @@ export function Post() {
 
             <div className={styles.content}>
                 <p>{Chance.content(3)}</p>
-                <a href="#">#{Chance.word()}</a>{' '}
-                <a href="#">#{Chance.word()}</a>{' '}                
-                <a href="#">#{Chance.word()}</a>{' '}
+                <p>
+                    <a href="#">#{Chance.word()}</a>{' '}
+                    <a href="#">#{Chance.word()}</a>{' '}                
+                    <a href="#">#{Chance.word()}</a>{' '}
+                </p>
             </div>
+
+            <form className={styles.feedback}>
+                <strong>Give Your Feedback</strong>
+                <textarea 
+                    placeholder='Give Your Feedback'
+                />
+
+                <footer>
+                    <button type='submit'>
+                        Comment
+                    </button>
+                </footer>                
+            </form>
         </article>
     )
 }
