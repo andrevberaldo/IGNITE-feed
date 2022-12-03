@@ -2,10 +2,10 @@ import styles from './Post.module.css';
 import Chance from '../../Utils/Chance';
 import moment from 'moment';
 import { Comment } from '../Comment/Comment';
+import { Avatar } from '../Avatar/Avatar';
 
-export function Post() {
+export function Post({fakePublisher}) {
     const postDate = moment().subtract(Chance.int(), 'minutes');
-    const job = Chance.job();
 
     return (
         <article className={styles.post}>
@@ -13,10 +13,12 @@ export function Post() {
             <header className={styles.header}>
                 
                 <div className={styles.author}>
-                    <img className={styles.avatar} src={Chance.avatar()} alt="" />
+                    <Avatar 
+                        src={fakePublisher.avatar}
+                    />
                     <div className={styles['author-info']}>
-                        <strong>{Chance.name()}</strong>
-                        <span title={job}>{job}</span>
+                        <strong>{fakePublisher.firstName}</strong>
+                        <span title={fakePublisher.job}>{fakePublisher.job}</span>
                     </div>
                 </div>
 

@@ -1,16 +1,19 @@
 import rand from '../../Utils/Chance';
 import styles from './SideBar.module.css';
 import { PencilLine } from 'phosphor-react';
+import { Avatar } from '../Avatar/Avatar';
 
-export function SideBar() {
+export function SideBar({fakePublisher}) {
     return (
         <aside className={styles.sidebar}>
             <img className={styles.cover} src={rand.background()} alt="" />
             <div className={styles.profile}>
-                <img className={styles.avatar} src={rand.avatar()} alt="" />
+                <Avatar 
+                    src={fakePublisher.avatar}
+                />                
 
-                <strong>{rand.fullName()}</strong>
-                <span>{rand.job()}</span>                
+                <strong>{fakePublisher.fullName}</strong>
+                <span>{fakePublisher.job}</span>                
             </div>
 
             <footer className={styles.footer}>                

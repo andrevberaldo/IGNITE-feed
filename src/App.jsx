@@ -7,17 +7,24 @@ import './global.css';
 import { SideBar } from "./components/side-bar/SideBar";
 
 export function App() {
+
+  const fakePublisher = {
+    fullName: Chance.fullName(),
+    avatar: Chance.avatar(),
+    job: Chance.job(),
+    firstName: Chance.name()
+  }
   
   return (
     <>
       <Header />
       
       <div className={styles.wrapper}>
-        <SideBar />
+        <SideBar fakePublisher={fakePublisher}/>
 
         <main>
-          <Post />
-          <Post />
+          <Post fakePublisher={fakePublisher}/>
+          <Post fakePublisher={fakePublisher}/>
         </main>    
       </div>
     </>
