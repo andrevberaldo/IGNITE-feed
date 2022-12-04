@@ -1,4 +1,5 @@
 import {faker} from '@faker-js/faker';
+import moment from 'moment/moment';
 
 const Chance = {
     fullName() {
@@ -24,6 +25,12 @@ const Chance = {
     },
     word() {
         return faker.lorem.word();
+    },
+    url() {
+        return faker.internet.url();
+    },
+    pastDate() {
+        return moment().subtract(faker.datatype.number(), 'seconds');
     }
 }
 

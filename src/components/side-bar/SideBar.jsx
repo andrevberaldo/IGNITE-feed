@@ -3,17 +3,17 @@ import styles from './SideBar.module.css';
 import { PencilLine } from 'phosphor-react';
 import { Avatar } from '../Avatar/Avatar';
 
-export function SideBar({fakePublisher}) {
+export function SideBar({ user }) {
     return (
         <aside className={styles.sidebar}>
             <img className={styles.cover} src={rand.background()} alt="" />
             <div className={styles.profile}>
                 <Avatar 
-                    src={fakePublisher.avatar}
+                    src={user.avatar}
                 />                
 
-                <strong>{fakePublisher.fullName}</strong>
-                <span>{fakePublisher.job}</span>                
+                <strong>{user.fullName}</strong>
+                <span>{user.job}</span>                
             </div>
 
             <footer className={styles.footer}>                

@@ -1,11 +1,15 @@
 import styles from './Post.module.css';
 import Chance from '../../Utils/Chance';
-import moment from 'moment';
 import { Comment } from '../Comment/Comment';
 import { Avatar } from '../Avatar/Avatar';
+import moment from 'moment';
 
-export function Post({fakePublisher}) {
-    const postDate = moment().subtract(Chance.int(), 'minutes');
+export function Post({ author, content, publishedAt }) {
+
+    const postContentAsHtml = content.map(line => {
+        if(line.type === 'paragraph') return <p>{line.content}</p>
+        if(line.type === 'link') return <p><a href={'#'}>{line.content}</a></p>
+    })
 
     return (
         <article className={styles.post}>
@@ -14,30 +18,27 @@ export function Post({fakePublisher}) {
                 
                 <div className={styles.author}>
                     <Avatar 
-                        src={fakePublisher.avatar}
+                        src={author.avatar}
                     />
                     <div className={styles['author-info']}>
-                        <strong>{fakePublisher.firstName}</strong>
-                        <span title={fakePublisher.job}>{fakePublisher.job}</span>
+                        <strong>{author.name}</strong>
+                        <span title={author.role}>{author.role}</span>
                     </div>
                 </div>
 
                 <time
-                    dateTime={postDate.format('LT')}
-                    title={postDate.format('ll')}
+                    dateTime={publishedAt.format('LT')}
+                    title={publishedAt.format('lll')}
                 >
-                    Posted {postDate.fromNow()}
+                    Posted {publishedAt.fromNow()}
                 </time>
 
             </header>
 
             <div className={styles.content}>
-                <p>{Chance.content(3)}</p>
-                <p>
-                    <a href="#">#{Chance.word()}</a>{' '}
-                    <a href="#">#{Chance.word()}</a>{' '}                
-                    <a href="#">#{Chance.word()}</a>{' '}
-                </p>
+                {
+                    postContentAsHtml
+                }
             </div>
 
             <form className={styles.feedback}>
