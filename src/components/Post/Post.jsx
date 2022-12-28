@@ -1,15 +1,46 @@
 import styles from './Post.module.css';
-import Chance from '../../Utils/Chance';
+import { useState } from 'react';
 import { Comment } from '../Comment/Comment';
 import { Avatar } from '../Avatar/Avatar';
-import moment from 'moment';
 
 export function Post({ author, content, publishedAt }) {
 
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
+
     const postContentAsHtml = content.map(line => {
-        if(line.type === 'paragraph') return <p>{line.content}</p>
-        if(line.type === 'link') return <p><a href={'#'}>{line.content}</a></p>
-    })
+        if(line.type === 'paragraph') return <p key={line.content}>{line.content}</p>
+        if(line.type === 'link') return <p key={line.content}><a href={'#'}>{line.content}</a></p>
+    });
+    
+    const commentsAsHtml = comments.map(comment => (
+        <Comment
+            key={comment}
+            content={comment}
+            onDeleteComment={handleOnDeleteComment}
+        />)
+    );
+
+    function handleCreateNewComment(event) {
+        event.preventDefault();
+        if(newComment) {            
+            setComments([
+                ...comments,
+                newComment
+            ]);
+            setNewComment('');
+        }        
+    }
+
+    function handleNewCommentOnChange(event) {
+        setNewComment(event.target.value);
+    }
+
+    function handleOnDeleteComment(commentProp) {
+        
+        const commentsFiltered = comments.filter(comment => comment !== commentProp);
+        setComments(commentsFiltered);
+    }
 
     return (
         <article className={styles.post}>
@@ -41,12 +72,17 @@ export function Post({ author, content, publishedAt }) {
                 }
             </div>
 
-            <form className={styles.feedback}>
+            <form 
+                className={styles.feedback}
+                onSubmit={handleCreateNewComment}
+            >
                 
                 <strong>Give Your Feedback</strong>
                 
                 <textarea 
                     placeholder='Give Your Feedback'
+                    onChange={handleNewCommentOnChange}
+                    value={newComment}
                 />
 
                 <footer>
@@ -58,10 +94,8 @@ export function Post({ author, content, publishedAt }) {
             </form>
 
             <div className={styles.commentList}>
-                <Comment />
+                { commentsAsHtml }
             </div>
-
-            
 
         </article>
     )
